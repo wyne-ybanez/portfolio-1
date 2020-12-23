@@ -97,7 +97,7 @@ header {
 
 .name {
     font-family: "Exo", sans-serif;
-    font-weight: 100;
+    font-weight: 500;
     font-size: 46px;
     margin-top: 50px;
     color: #fff;
@@ -106,7 +106,7 @@ header {
 
 .title {
     font-family: "Roboto", sans-serif;
-    font-weight: 200;
+    font-weight: 400;
     font-size: 28px;
     margin-top: 20px;
     margin-bottom: 90px;
@@ -292,6 +292,7 @@ footer {
 .history-heading {
     color: #fafafa;
     margin-bottom: 50px;
+    font-weight: 500;
 }
 
 .timeline-item {
