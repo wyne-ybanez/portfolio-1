@@ -57,6 +57,7 @@
                         <h3 class="section-heading uppercase">Conferences and Meetups attended</h3>
                     </div>
                 </div>
+                 <!-- Add to HTML for the Google maps API -->
                 <div id="map"></div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-8 bg-color-groups section-column">
@@ -192,6 +193,19 @@
             </div>
         </div>
     </footer>
+    <script>
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 3,
+                center: {
+                    lat: 46.619261,
+                    lng: -33.134766
+                }
+            });
+        }
+    </script>
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCACRlDlzkN-6K9h0yiK8a9wA6pjw7IGQY&callback=initMap"></script>
 </body>
 
 </html>
