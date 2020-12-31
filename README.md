@@ -1,6 +1,6 @@
 # Second Portfolio Theme
 
-Here is a link: https://wyne-ybanez.github.io/portfolio-new/
+Here is a link: https://wyne-ybanez.github.io/portfolio-1/
 
 ### Objective
 

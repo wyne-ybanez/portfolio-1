@@ -59,9 +59,6 @@
     background-color: #e74c3c;
 }
 
-
-
-
 body {
     font-family: Roboto, sans-serif;
     font-weight: 300;
@@ -183,6 +180,10 @@ header {
     font-size: 14px;
     font-weight: 300;
     letter-spacing: 2px;
+}
+
+.list-inline-item:not(:last-child) {
+    margin-right: 0.0;
 }
 
 
