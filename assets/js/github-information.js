@@ -16,6 +16,7 @@ function userInformationHTML(user){
     </div>`;
     
 }
+
 // function to display data on screen - the object returned from the API 
 // if length is 0, array is empty and there is no repositories
 function repoInformationHTML(repos) {
@@ -44,6 +45,11 @@ function repoInformationHTML(repos) {
 }
 
 function fetchGithubInformation(event) {
+
+    // These empty the search bar 
+    $("#gh-user-data").html("");
+    $("#gh-repo-data").html("");
+
     var username = $("#gh-username").val();
 
     // if username field is empty
@@ -96,3 +102,6 @@ function fetchGithubInformation(event) {
             }
         });
 }
+
+// this one line displays the profile when DOM is fully loaded
+$(document).ready(fetchGithubInformation);
