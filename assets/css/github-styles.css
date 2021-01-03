@@ -118,7 +118,7 @@ header {
 }
 
 .logo {
-    background: url("../images/rosie.jpg");
+    background: url("../images/aboutme.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -183,6 +183,10 @@ header {
     font-size: 14px;
     font-weight: 300;
     letter-spacing: 2px;
+}
+
+.list-inline-item:not(:last-child) {
+    margin-right: 0.0;
 }
 
 

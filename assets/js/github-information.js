@@ -16,6 +16,32 @@ function userInformationHTML(user){
     </div>`;
     
 }
+// function to display data on screen - the object returned from the API 
+// if length is 0, array is empty and there is no repositories
+function repoInformationHTML(repos) {
+    if (repos.length == 0) {
+        return `<div class="clearfix repo-list">No repos!</div>`;
+    }
+
+    // if there is a result - iteretate through the array result
+    // using Map method - returns an array 
+    // use join to join everything on that array and join on a new line 
+    // stops from having to iterate through the new array once again
+    var listItemsHTML = repos.map(function(repo) {
+        return `<li>  
+                    <a href="${repo.html_url}" target="_blank">${repo.name}</a>
+                </li>`;
+    });
+
+    return `<div class="clearfix repo-list">
+                <p> 
+                    <strong>Repo List:</strong>
+                </p>
+                <ul>
+                    ${listItemsHTML.join("\n")}
+                </ul>
+            </div> `
+}
 
 function fetchGithubInformation(event) {
     var username = $("#gh-username").val();
@@ -35,14 +61,18 @@ function fetchGithubInformation(event) {
     // when we get a response from the Github API 
     // then function to display it in the gh-user-data div 
     // otherwise - error function 
+    // when method always packs the info into an array
     $.when(
-        $.getJSON(`https://api.github.com/users/${username}`)
+        $.getJSON(`https://api.github.com/users/${username}`),
+        $.getJSON(`https://api.github.com/users/${username}/repos`)
     ).then(
-        function(response) {
-            var userData = response;
+        function(firstResponse, secondResponse) {
+            var userData = firstResponse[0];
+            var repoData = secondResponse[0];
 
             // set the html code to the results of this function
             $("#gh-user-data").html(userInformationHTML(userData));
+            $("#gh-repo-data").html(repoInformationHTML(repoData));
         }, 
         function(errorResponse) {
 
@@ -52,8 +82,8 @@ function fetchGithubInformation(event) {
                 $("gh-user-data").html(
                     `<h2>
                         No info found for user ${username}
-                    </h2>`)
-            } 
+                    </h2>`);
+            }
             
             // the error we receive might not be a 404 error
             // therefore, show error via console.log 
@@ -62,8 +92,7 @@ function fetchGithubInformation(event) {
             else {
                 console.log(errorResponse);
                 $("#gh-user-data").html(
-                    `<h2>Error: ${errorResponse.responseJSON.message}</h2>`
-                )
+                    `<h2>Error: ${errorResponse.responseJSON.message}</h2>`);
             }
         });
 }
