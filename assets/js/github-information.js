@@ -64,8 +64,7 @@ function fetchGithubInformation(event) {
             <img src="assets/css/loader.gif" alt="loading..." />
         </div>`);
 
-    // when we get a response from the Github API 
-    // then function to display it in the gh-user-data div 
+    // function to display it in the gh-user-data div 
     // otherwise - error function 
     // when method always packs the info into an array
     $.when(
@@ -90,11 +89,18 @@ function fetchGithubInformation(event) {
                         No info found for user ${username}
                     </h2>`);
             }
+
+            // for API throttling - check for 'forbidden'
+            // date we want is inside the error response - in headers
+            // Header provided by GH lets us know when it will reset 
+            // UNIX time stamp
+            else if (errorResponse.status === 403) {
+                var resetTime = new Date(errorResponse.getResponseHeader('X-RateLimit-Reset')*1000);
+                $("#gh-user-data").html(`<h4>Too many requests, please wait until ${resetTime.toLocaleTimeString()}</h4>`)
+            }
             
             // the error we receive might not be a 404 error
-            // therefore, show error via console.log 
             // set the gh-user-data to the response we received 
-            // JSON response from our error response variable above
             else {
                 console.log(errorResponse);
                 $("#gh-user-data").html(
